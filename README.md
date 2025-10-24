@@ -41,7 +41,7 @@ The system integrates on-premise servers at each stadium and cloud-hosted servic
 
 ### 2.2 Database Storage Pipeline (Cloud)
 
-**Purpose:** Handle frequent requests from App 2 users globally. Provides persistent storage for live metrics.
+**Purpose:** Handle frequent requests from Application 2 users globally. Provides persistent storage for live metrics.
 
 **Flow:** 
 
@@ -53,7 +53,7 @@ The system integrates on-premise servers at each stadium and cloud-hosted servic
 
 - **Google Cloud SQL (PostgreSQL):** Handles concurrent reads/writes from users worldwide.
 - **Airflow:** Orchestrates ETL tasks every 2 minutes to synchronize data from InfluxDB → Cloud SQL (PostgreSQL).
-- **App 2:** Fetches data from Cloud SQL, enabling global users (coaches, scouts) to access player analytics.
+- **Application 2:** Fetches data from Cloud SQL, enabling global users (coaches, scouts) to access player analytics.
 
 **Notes:**
 
@@ -110,7 +110,7 @@ The system integrates on-premise servers at each stadium and cloud-hosted servic
 | Tool | Purpose |
 |------|----------|
 | Airflow (Cloud) | Orchestration of ETL pipelines (daily & scheduled). |
-| Google Cloud SQL (PostgreSQL) | Persistent relational database for App 2 global requests. |
+| Google Cloud SQL (PostgreSQL) | Persistent relational database for Application 2 global requests. |
 | Google BigQuery | Data warehouse for historical analytics and reporting. |
 
 ---
@@ -127,7 +127,7 @@ The system integrates on-premise servers at each stadium and cloud-hosted servic
 
 ### 5.2 Cloud
 
-- **Cloud SQL for PostgreSQL:** Single instance with optional read replicas for global App 2 users.
+- **Cloud SQL for PostgreSQL:** Single instance with optional read replicas for global Application 2 users.
 - **Airflow:** Schedules ETL jobs for:
   1. InfluxDB → Cloud SQL for PostgreSQL (every 2 minutes).
   2. Cloud SQL for PostgreSQL → BigQuery (daily).
