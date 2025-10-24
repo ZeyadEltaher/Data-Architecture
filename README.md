@@ -19,7 +19,7 @@ The system integrates on-premise servers at each stadium and cloud-hosted servic
 **Purpose:** Handle sensor data in real-time and provide live analytics for coaches and medical staff.
 
 **Flow:**
-Sensors → MQTT → Kafka Connect (Source) → Kafka → PySpark → Kafka Connect (Sink) → InfluxDB → Grafana / Application 1
+- Sensors → MQTT → Kafka Connect (Source) → Kafka → PySpark → Kafka Connect (Sink) → InfluxDB → Grafana / Application 1
 
 **Details:**
 
@@ -44,7 +44,7 @@ Sensors → MQTT → Kafka Connect (Source) → Kafka → PySpark → Kafka Conn
 **Purpose:** Handle frequent requests from App 2 users globally. Provides persistent storage for live metrics.
 
 **Flow:**
-Airflow Job (every 2 minutes):
+- Airflow Job (every 2 minutes):
 1. Read from last checkpoint in InfluxDB.
 2. Load into Google Cloud SQL (PostgreSQL).
 
@@ -70,7 +70,7 @@ Data is partitioned via checkpoints to avoid duplicates.
 **Purpose:** Maintain historical data and support long-term analytics and reporting.
 
 **Flow:**
-Airflow Job (daily):
+- Airflow Job (daily):
 1. Read from last checkpoint in Google Cloud SQL for PostgreSQL.
 2. Load into Google BigQuery.
 
