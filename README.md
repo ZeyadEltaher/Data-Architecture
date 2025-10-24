@@ -43,10 +43,11 @@ The system integrates on-premise servers at each stadium and cloud-hosted servic
 
 **Purpose:** Handle frequent requests from App 2 users globally. Provides persistent storage for live metrics.
 
-**Flow:**
+**Flow:** 
+
 - Airflow Job (every 2 minutes):
-1. Read from last checkpoint in InfluxDB.
-2. Load into Google Cloud SQL (PostgreSQL).
+  1. Read from last checkpoint in InfluxDB.
+  2. Load into Google Cloud SQL (PostgreSQL).
 
 **Details:**
 
@@ -56,12 +57,11 @@ The system integrates on-premise servers at each stadium and cloud-hosted servic
 
 **Notes:**
 
-The same PostgreSQL database serves two purposes:
+- The same PostgreSQL database serves two purposes:
+  1. Immediate application requests (App 2).
+  2. Feeding permanent storage pipeline (ETL to BigQuery).
 
-1. Immediate application requests (App 2).
-2. Feeding permanent storage pipeline (ETL to BigQuery).
-
-Data is partitioned via checkpoints to avoid duplicates.
+- Data is partitioned via checkpoints to avoid duplicates.
 
 ---
 
@@ -71,8 +71,8 @@ Data is partitioned via checkpoints to avoid duplicates.
 
 **Flow:**
 - Airflow Job (daily):
-1. Read from last checkpoint in Google Cloud SQL for PostgreSQL.
-2. Load into Google BigQuery.
+  1. Read from last checkpoint in Google Cloud SQL for PostgreSQL.
+  2. Load into Google BigQuery.
 
 **Details:**
 
@@ -87,16 +87,8 @@ Data is partitioned via checkpoints to avoid duplicates.
 
 ---
 
-## 3. Data Flow Summary
-
-**Real-time Pipeline - On-Premise**
-- Sensors → MQTT → Kafka → PySpark → InfluxDB → Grafana / Application 1 → Coaches & Scouts
-
-**Database Storage Pipeline - Cloud**
-- Airflow Job (InfluxDB → Cloud SQL for Postgres) → Application 2 → Global users
-
-**Permanent Storage Pipeline - Cloud**
-- Airflow Job (Cloud SQL → BigQuery) → Power BI (Historical Analytics / Reports)
+## 3. Data Flow Architecture
+[![Untitled.jpg](https://i.postimg.cc/8cSt2B5P/Untitled.jpg)](https://postimg.cc/R6g7ftKj)
 
 ---
 
