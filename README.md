@@ -25,7 +25,8 @@ The system integrates on-premise servers at each stadium and cloud-hosted servic
 
 - **Sensors:** Collect player metrics (heart rate, speed, position, etc.).
 - **MQTT:** Lightweight protocol to transmit sensor data to the local server.
-- **Kafka + Kafka Connect (Source):** Receive messages from MQTT and distribute them to streaming processors.
+- **Kafka Connect (Source):** Receive messages from MQTT then send them to Kafka Topics.
+- **Kafka**:  Receive messages from Kafka Connect and distribute them to streaming processors.
 - **PySpark (Structured Streaming):** Process data in real-time (cleaning, aggregations, metrics calculations).
 - **Kafka Connect (Sink):** Send processed data to InfluxDB.
 - **InfluxDB:** Time-series database for fast, temporary storage of sensor metrics.
