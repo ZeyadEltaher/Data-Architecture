@@ -128,7 +128,7 @@ Cloud Composer Job (daily):
 ### 4.2 Cloud
 
 - **Cloud SQL:** Single instance with optional read replicas for global App 2 users.  
-- **Cloud Composer:** Schedules ETL jobs for:  
+- **Airflow:** Schedules ETL jobs for:  
   1. InfluxDB → Cloud SQL every 2 minutes.  
   2. Cloud SQL → BigQuery daily.  
 - **BigQuery:** Historical analytics & reports accessible via BI tools or dashboards.
@@ -138,13 +138,14 @@ Cloud Composer Job (daily):
 ## 5. Data Flow Summary
 
 **Real-time Pipeline - On-Premise**  
-Sensors → MQTT → Kafka → PySpark → InfluxDB → Grafana / App 1
+Sensors → MQTT → Kafka → PySpark → InfluxDB → Grafana / Application 1 (Coaches & Medical teams)
 
 **Database Storage Pipeline - Cloud**  
-InfluxDB → Airflow → Cloud SQL → App 2 (global users)
+InfluxDB → Airflow → Cloud SQL → Application 2 (Global users)
 
 **Permanent Storage Pipeline - Cloud**  
-Cloud SQL → Cloud Composer → BigQuery → Historical Analytics / Reports
+Airflow Job 
+ → PowerBI (Historical Analytics / Reports)
 
 **Checkpoints & Incremental Loads:**  
 ETL jobs use last checkpoint to avoid duplicate data.  
@@ -154,7 +155,7 @@ Cloud SQL serves both as global read DB and as source for data warehouse ETL.
 
 ## 6. Security & Access Control
 
-- **On-Premise:** Each stadium network isolated. Only coaches and authorized staff can access Grafana/App 1.  
+- **On-Premise:** Each stadium network isolated. Only coaches and authorized staff can access Grafana/App 1.  =
 - **Cloud SQL & BigQuery:**  
   - Role-based access control (RBAC).  
   - SSL connections and IP restrictions for App 2 users.  
