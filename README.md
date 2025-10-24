@@ -144,11 +144,11 @@ Sensors → MQTT → Kafka → PySpark → InfluxDB → Grafana / Application 1 
 InfluxDB → Airflow → Cloud SQL → Application 2 (Global users)
 
 **Permanent Storage Pipeline - Cloud**  
-Airflow Job 
+Airflow Job (Cloud SQL → BigQuery)
  → PowerBI (Historical Analytics / Reports)
 
 **Checkpoints & Incremental Loads:**  
-ETL jobs use last checkpoint to avoid duplicate data.  
+ETL jobs use last checkpoint to avoid duplicate data.   
 Cloud SQL serves both as global read DB and as source for data warehouse ETL.
 
 ---
