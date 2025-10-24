@@ -70,14 +70,14 @@ Data is partitioned via checkpoints to avoid duplicates.
 **Purpose:** Maintain historical data and support long-term analytics and reporting.
 
 **Flow:**
-Cloud Composer Job (daily):
+Airflow Job (daily):
 1. Read from last checkpoint in Google Cloud SQL for PostgreSQL.
 2. Load into Google BigQuery.
 
 **Details:**
 
-- **Cloud Composer (Managed Airflow on Google Cloud):**
-  - Schedules daily ETL jobs to move data from Cloud SQL → BigQuery.
+- **Airflow on Google Cloud:**
+  - Schedules daily ETL jobs to move data from Cloud SQL for PostgreSQL → BigQuery.
   - Tracks checkpoints to ensure incremental loading.
 
 - **Google BigQuery:**
