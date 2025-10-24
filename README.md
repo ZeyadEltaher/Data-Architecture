@@ -90,17 +90,13 @@ Cloud Composer Job (daily):
 ## 3. Data Flow Summary
 
 **Real-time Pipeline - On-Premise**
-Sensors → MQTT → Kafka → PySpark → InfluxDB → Grafana / Application 1 → Coaches & Scouts
+- Sensors → MQTT → Kafka → PySpark → InfluxDB → Grafana / Application 1 → Coaches & Scouts
 
 **Database Storage Pipeline - Cloud**
-Airflow Job (InfluxDB → Cloud SQL for Postgres) → Application 2 → Global users
+- Airflow Job (InfluxDB → Cloud SQL for Postgres) → Application 2 → Global users
 
 **Permanent Storage Pipeline - Cloud**
-Airflow Job (Cloud SQL → BigQuery) → Power BI (Historical Analytics / Reports)
-
-**Checkpoints & Incremental Loads:**
-ETL jobs use last checkpoint to avoid duplicate data.
-Cloud SQL serves both as global read DB and as source for data warehouse ETL.
+- Airflow Job (Cloud SQL → BigQuery) → Power BI (Historical Analytics / Reports)
 
 ---
 
