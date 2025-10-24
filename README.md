@@ -1,4 +1,4 @@
-# Data Architecture
+# Data Pipelines Architecture
 
 ## 1. Overview
 
